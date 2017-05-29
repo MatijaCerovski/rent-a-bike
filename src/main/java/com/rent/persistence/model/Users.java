@@ -1,4 +1,4 @@
-package com.rent.model;
+package com.rent.persistence.model;
 
 import javax.persistence.*;
 import java.util.List;
