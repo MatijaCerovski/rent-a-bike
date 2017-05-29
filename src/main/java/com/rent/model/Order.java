@@ -1,4 +1,4 @@
-package com.rent.persistence.model;
+package com.rent.model;
 
 import javax.persistence.*;
 import java.sql.Date;

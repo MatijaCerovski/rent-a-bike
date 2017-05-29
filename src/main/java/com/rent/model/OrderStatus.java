@@ -1,4 +1,4 @@
-package com.rent.persistence.model;
+package com.rent.model;
 
 /**
  * Created by Matija on 25.5.2017..

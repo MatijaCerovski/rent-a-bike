@@ -1,4 +1,4 @@
-package com.rent.persistence.model;
+package com.rent.model;
 
 import javax.persistence.*;
 import java.util.List;
@@ -8,17 +8,17 @@ import java.util.List;
  */
 @Entity
 public class Shop {
-    private int shopId;
+    private Long shopId;
     private String name;
     private List<Bike> bikes;
 
     @Id
     @Column(name = "shop_id")
-    public int getShopId() {
+    public Long getShopId() {
         return shopId;
     }
 
-    public void setShopId(int shopId) {
+    public void setShopId(Long shopId) {
         this.shopId = shopId;
     }
 
@@ -45,12 +45,12 @@ public class Shop {
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        int result = shopId;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
-    }
+//    @Override
+//    public int hashCode() {
+//        int result = shopId;
+//        result = 31 * result + (name != null ? name.hashCode() : 0);
+//        return result;
+//    }
 
     @OneToMany(mappedBy = "shop")
     public List<Bike> getBikes() {
