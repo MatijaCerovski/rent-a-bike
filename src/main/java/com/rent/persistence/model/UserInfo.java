@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by Matija on 25.5.2017..
  */
 @Entity
-@Table(name = "user_info", schema = "rent_a_bike")
+@Table(name = "user_info")
 public class UserInfo {
     private int userInfoId;
     private String firstName;
@@ -79,7 +79,8 @@ public class UserInfo {
         return result;
     }
 
-    @OneToOne(mappedBy = "userInfo")
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = false)
     public Users getUser() {
         return user;
     }

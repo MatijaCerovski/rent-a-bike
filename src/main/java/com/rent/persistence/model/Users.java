@@ -7,6 +7,7 @@ import java.util.List;
  * Created by Matija on 25.5.2017..
  */
 @Entity
+@Table(name = "users")
 public class Users {
     private int userId;
     private String username;
@@ -102,7 +103,7 @@ public class Users {
         this.userRoles = userRoles;
     }
 
-    @OneToOne
+    @OneToOne(mappedBy = "user", fetch = FetchType.EAGER)
     public UserInfo getUserInfo() {
         return userInfo;
     }

@@ -1,7 +1,9 @@
 package com.rent.controller;
 
 import com.rent.persistence.model.Shop;
+import com.rent.persistence.model.Users;
 import com.rent.service.shop.ShopService;
+import com.rent.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +12,9 @@ import java.util.List;
 
 @Controller
 public class HomeController {
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private ShopService shopService;
@@ -37,6 +42,14 @@ public class HomeController {
 
         List<Shop> shopList = shopService.findAllByName(shop.getName());
         System.out.println("Shop list size: " + shopList.size());
+
+
+        Users user;
+        user = userService.findByUsername("matija");
+
+        System.out.println("Dohvacanje usera test  " +user.getEmail());
+
+
         return "index";
     }
 }
