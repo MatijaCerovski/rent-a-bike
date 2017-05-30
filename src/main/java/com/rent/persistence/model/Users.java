@@ -93,7 +93,7 @@ public class Users {
         return result;
     }
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     public List<UserRoles> getUserRoles() {
         return userRoles;
     }
