@@ -12,7 +12,7 @@ public class Users {
     private int userId;
     private String username;
     private String password;
-    private byte enabled;
+    private boolean enabled;
     private String email;
     private List<UserRoles> userRoles;
     private UserInfo userInfo;
@@ -50,11 +50,11 @@ public class Users {
 
     @Basic
     @Column(name = "enabled")
-    public byte getEnabled() {
+    public boolean isEnabled() {
         return enabled;
     }
 
-    public void setEnabled(byte enabled) {
+    public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
 
@@ -68,31 +68,6 @@ public class Users {
         this.email = email;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Users users = (Users) o;
-
-        if (userId != users.userId) return false;
-        if (enabled != users.enabled) return false;
-        if (username != null ? !username.equals(users.username) : users.username != null) return false;
-        if (password != null ? !password.equals(users.password) : users.password != null) return false;
-        if (email != null ? !email.equals(users.email) : users.email != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = userId;
-        result = 31 * result + (username != null ? username.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (int) enabled;
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        return result;
-    }
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     public List<UserRoles> getUserRoles() {
@@ -120,4 +95,6 @@ public class Users {
     public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
+
+
 }
