@@ -13,10 +13,10 @@ public class BikeServiceImpl implements BikeService {
 
     @Override
     public Bike findById(Integer bikeId) {
-        if (bikeIdd == null) {
+        if (bikeId == null) {
             return null;
         }
-        return bikeRepository.findOne(bikeIdd);
+        return bikeRepository.findOne(bikeId);
     }
 
     @Override

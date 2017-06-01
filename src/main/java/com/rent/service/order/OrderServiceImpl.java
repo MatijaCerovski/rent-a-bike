@@ -12,11 +12,11 @@ public class OrderServiceImpl implements OrderService {
     private OrderRepository OrderRepository;
 
     @Override
-    public Order findById(Integer OrderIdd) {
-        if (OrderIdd == null) {
+    public Order findById(Integer orderId) {
+        if (orderId == null) {
             return null;
         }
-        return OrderRepository.findOne(OrderIdd);
+        return OrderRepository.findOne(orderId);
     }
 
     @Override
