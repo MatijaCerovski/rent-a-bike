@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by Matija on 25.5.2017..
  */
 @Entity
-@Table(name = "user_roles", schema = "rent_a_bike")
+@Table(name = "user_roles")
 public class UserRoles {
     private int userRoleId;
     private String role;
@@ -53,6 +53,7 @@ public class UserRoles {
     }
 
     @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     public Users getUser() {
         return user;
     }
