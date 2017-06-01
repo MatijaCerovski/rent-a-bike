@@ -4,7 +4,7 @@ import com.rent.persistence.model.Bike;
 
 public interface BikeService {
 
-    Bike findById(Integer id);
+    Bike findById(Integer bikeId);
 
     Bike save(Bike bike);
 }

@@ -12,7 +12,7 @@ public class BikeServiceImpl implements BikeService {
     private BikeRepository bikeRepository;
 
     @Override
-    public Bike findById(Integer bikeIdd) {
+    public Bike findById(Integer bikeId) {
         if (bikeIdd == null) {
             return null;
         }
