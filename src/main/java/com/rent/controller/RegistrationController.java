@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Controller
 public class RegistrationController {
+
     @GetMapping("/registration")
     public String openRegistration() {
         return "registration";
