@@ -25,16 +25,13 @@ public class HomeController {
     public String getHome(){
         //Create shop
         Shop shop = new Shop();
-        shop.setShopId(1L); //stupac nije stavljen da se sam setira pa treba rucno stavit id trenutno
         shop.setName("Trgocikl");
         shopService.save(shop);
         shop = new Shop();
-        shop.setShopId(2L); //stupac nije stavljen da se sam setira pa treba rucno stavit id trenutno
-        shop.setName("Trgocikl");
+        shop.setName("Trgocik2");
         shopService.save(shop);
         shop = new Shop();
-        shop.setShopId(3L); //stupac nije stavljen da se sam setira pa treba rucno stavit id trenutno
-        shop.setName("Trgocikl");
+        shop.setName("Trgocik3");
         shop = shopService.save(shop);
 
         //find shop by id

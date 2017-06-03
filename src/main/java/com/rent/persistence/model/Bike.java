@@ -17,6 +17,7 @@ public class Bike {
     private Shop shop;
 
     @Id
+    @GeneratedValue
     @Column(name = "bike_id")
     public int getBikeId() {
         return bikeId;

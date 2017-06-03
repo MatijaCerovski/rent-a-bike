@@ -15,6 +15,7 @@ public class UserInfo {
     private Users user;
 
     @Id
+    @GeneratedValue
     @Column(name = "user_info_id")
     public int getUserInfoId() {
         return userInfoId;

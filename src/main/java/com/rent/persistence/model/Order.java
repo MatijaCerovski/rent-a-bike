@@ -16,6 +16,7 @@ public class Order {
     private OrderStatus status;
 
     @Id
+    @GeneratedValue
     @Column(name = "order_id")
     public int getOrderId() {
         return orderId;

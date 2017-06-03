@@ -13,6 +13,7 @@ public class Shop {
     private List<Bike> bikes;
 
     @Id
+    @GeneratedValue
     @Column(name = "shop_id")
     public Long getShopId() {
         return shopId;
