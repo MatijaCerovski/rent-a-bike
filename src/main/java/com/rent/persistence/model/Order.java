@@ -54,6 +54,7 @@ public class Order {
     public void setOrderStatus(OrderStatus status){this.status = status;};
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     public Users getUser() {
         return user;
     }
@@ -63,6 +64,7 @@ public class Order {
     }
 
     @ManyToOne
+    @JoinColumn(name = "bike_id")
     public Bike getBike() {
         return bike;
     }

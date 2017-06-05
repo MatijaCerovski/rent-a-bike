@@ -5,6 +5,8 @@ import com.rent.persistence.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class OrderServiceImpl implements OrderService {
 
@@ -25,6 +27,12 @@ public class OrderServiceImpl implements OrderService {
             return null;
         }
         return OrderRepository.save(Order);
+    }
+
+    @Override
+    public List<Order> findAll()
+    {
+        return OrderRepository.findAll();
     }
     
 }
