@@ -1,5 +1,7 @@
 package com.rent.dto;
 
+import com.rent.validation.PasswordMatches;
+import com.rent.validation.ValidEmail;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +13,7 @@ import javax.validation.constraints.Size;
  * Created by Matija on 5.6.2017..
  */
 @Data @AllArgsConstructor @NoArgsConstructor
+@PasswordMatches
 public class UserRegistrationDto {
 
     @NotNull
@@ -31,6 +34,7 @@ public class UserRegistrationDto {
     @NotNull
     @NotEmpty
     @Size(max=254)
+    @ValidEmail
     private String email;
 
     @NotNull
