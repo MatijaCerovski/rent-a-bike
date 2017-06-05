@@ -29,7 +29,7 @@ public class UserRegistrationDto {
     @NotNull
     @NotEmpty
     @Size(max=15)
-    private String number;
+    private String phoneNumber;
 
     @NotNull
     @NotEmpty
