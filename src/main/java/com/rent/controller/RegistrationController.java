@@ -1,10 +1,10 @@
 package com.rent.controller;
 
-import org.springframework.http.HttpRequest;
+import com.rent.dto.UserRegistrationDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by Toni on 01-Jun-17.
  */
@@ -12,7 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 public class RegistrationController {
 
     @GetMapping("/registration")
-    public String openRegistration() {
+    public String openRegistration(Model model) {
+
+        UserRegistrationDto userRegistrationDto = new UserRegistrationDto();
+
+        model.addAttribute("userRegistrationDto", userRegistrationDto);
         return "registration";
     }
 
