@@ -55,7 +55,7 @@ public class UserInfo {
         this.phoneNumber = phoneNumber;
     }
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false)
     public Users getUser() {
         return user;

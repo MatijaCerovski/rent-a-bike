@@ -70,7 +70,7 @@ public class Users {
     }
 
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     public List<UserRoles> getUserRoles() {
         return userRoles;
     }
@@ -79,7 +79,7 @@ public class Users {
         this.userRoles = userRoles;
     }
 
-    @OneToOne(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     public UserInfo getUserInfo() {
         return userInfo;
     }
