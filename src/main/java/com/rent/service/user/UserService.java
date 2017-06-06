@@ -8,5 +8,6 @@ import com.rent.persistence.model.Users;
 public interface UserService {
 
     Users findByUsername(String username);
+    void saveUser(Users users);
 
 }

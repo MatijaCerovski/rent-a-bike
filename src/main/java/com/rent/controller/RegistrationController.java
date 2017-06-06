@@ -1,6 +1,11 @@
 package com.rent.controller;
 
 import com.rent.dto.UserRegistrationDto;
+import com.rent.fasada.UserUserDtoMapper;
+import com.rent.persistence.model.Users;
+import com.rent.persistence.repository.UserRepository;
+import com.rent.service.user.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +25,11 @@ import javax.validation.Valid;
 @RequestMapping("/registration")
 public class RegistrationController {
 
+    @Autowired
+    UserUserDtoMapper userUserDtoMapper;
+    @Autowired
+    UserService userService;
+
     @GetMapping
     public String openRegistration(Model model) {
 
@@ -32,6 +42,9 @@ public class RegistrationController {
     @PostMapping
     public ModelAndView registracijaKorisnika(@ModelAttribute("userRegistrationDto") @Valid UserRegistrationDto userRegistrationDto,
                                               BindingResult bindingResult){
+
+        Users user = userUserDtoMapper.userDtoToUser(userRegistrationDto);
+        userService.saveUser(user);
 
 
         if (bindingResult.hasErrors()) {
