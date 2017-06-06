@@ -11,14 +11,14 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
-    private OrderRepository OrderRepository;
+    private OrderRepository orderRepository;
 
     @Override
     public Order findById(Integer orderId) {
         if (orderId == null) {
             return null;
         }
-        return OrderRepository.findOne(orderId);
+        return orderRepository.findOne(orderId);
     }
 
     @Override
@@ -26,13 +26,15 @@ public class OrderServiceImpl implements OrderService {
         if (Order == null) {
             return null;
         }
-        return OrderRepository.save(Order);
+        return orderRepository.save(Order);
     }
 
     @Override
     public List<Order> findAll()
     {
-        return OrderRepository.findAll();
+        return orderRepository.findAll();
     }
-    
+
+
+
 }

@@ -1,7 +1,8 @@
 package com.rent.persistence.model;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.time.LocalDate;
+
 
 /**
  * Created by Matija on 25.5.2017..
@@ -9,8 +10,8 @@ import java.sql.Date;
 @Entity
 public class Order {
     private int orderId;
-    private Date startDate;
-    private Date endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private Users user;
     private Bike bike;
     private OrderStatus status;
@@ -26,27 +27,29 @@ public class Order {
         this.orderId = orderId;
     }
 
-    @Basic
+
+
     @Column(name = "start_date")
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    @Basic
+
+
     @Column(name = "end_date")
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
-    @Basic
+
     @Column(name = "order_status")
     @Enumerated(EnumType.STRING)
     public OrderStatus getOrderStatus(){return status;}
