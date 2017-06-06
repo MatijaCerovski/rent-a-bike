@@ -53,6 +53,7 @@ public class RegistrationController {
             modelAndView.addObject("errorMessage", "User already exists or wrong credentials!");
             return modelAndView;
         } else {
+            userService.saveUser(user);
             return new ModelAndView("redirect:/login");
             // return "redirect:/login";
         }
