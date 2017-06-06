@@ -29,33 +29,44 @@
     </div>
 </nav>
 
-<div class="container-fluid">
+<div class="container">
     <div class="row">
-        <div class="col-sm-offset-3">
-            <div class="form-group">
-                <div class="col-sm-offset-2">
-                    <h1>Order List</h1>
-                </div>
+
+        <div class="form-group">
+            <div class="col-sm-12">
+                <h1>Order List</h1>
             </div>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>User Id</th>
-                        <th>Bike Id</th>
-                        <th>Start Date</th>
-                        <th>EndDate</th>
-                    </tr>
-                    <tr th:each="order : ${orders}">
-                        <td>test</td>
-                        <td>test</td>
-                        <td>test</td>
-                        <td>test</td>
-                    </tr>
-                </thead>
-            </table>
-
         </div>
+    </div>
+    <div class="row">
+        <div class="table-responsive" th:if="${not #lists.isEmpty(orders)}">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Bike</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>User</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="order : ${orders}">
+                    <td th:text="${order.orderId}"></td>
+                    <td th:text="${order.bike.model}"></td>
+                    <td th:text="${order.startDate}"></td>
+                    <td th:text="${order.endDate}"></td>
+                    <td th:text="${order.user.username}"></td>
+                    <td th:text="${order.getOrderStatus()}"></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
     </div>
 
 </div>

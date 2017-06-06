@@ -33,41 +33,10 @@ public class OrderController {
     @GetMapping("/orderList")
     public String orderList(Model model)
     {
-//        Users user;
-//        user = userService.findByUsername("akrizmani");
-//        System.out.println("User username: " + user.getUsername());
-//        Shop shop2 = shopService.findById(new Long(29));
-//        System.out.println("Shop name: " + shop2.getName());
-//
-////        Bike bike = new Bike();
-////        bike.setMaker("test");
-////        bike.setModel("test");
-////        bike.setPrice(BigDecimal.valueOf(456.5));
-////        bike.setShop(shop2);
-////        bikeService.save(bike);
-//        Bike bike = bikeService.findById(3);
-//        System.out.println("Bike Maker: " + bike.getMaker());
-//
-//
-//        Order order = new Order();
-//        order.setUser(user);
-//        order.setBike(bike);
-//        LocalDate todayLocalDate = LocalDate.now( ZoneId.of( "America/Montreal" ) );
-//        order.setStartDate(todayLocalDate);
-//        order.setEndDate(todayLocalDate);
-//        order.setOrderStatus(OrderStatus.Pending);
-//        System.out.println("Start date: " + order.getStartDate());
-//        System.out.println("End date: " + order.getEndDate());
-//        orderService.save(order);
-
-
-
+        List<Order> orders = orderService.findAll();
         Order order = orderService.findById(1);
-        System.out.println("Order");
-        List<Order> orderList = orderService.findAll();
-        System.out.println("Order List");
-        model.addAttribute("orders",orderList);
-        System.out.println("Model");
+        System.out.println("Order status: " + order.getOrderStatus());
+        model.addAttribute("orders",orders);
         return "orderList";
     }
 }

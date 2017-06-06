@@ -1,5 +1,7 @@
 package com.rent.persistence.model;
 
+import com.rent.converter.LocalDateAttributeConverter;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -8,6 +10,7 @@ import java.time.LocalDate;
  * Created by Matija on 25.5.2017..
  */
 @Entity
+@Table(name = "orders")
 public class Order {
     private int orderId;
     private LocalDate startDate;
@@ -30,6 +33,7 @@ public class Order {
 
 
     @Column(name = "start_date")
+    @Convert(converter = LocalDateAttributeConverter.class)
     public LocalDate getStartDate() {
         return startDate;
     }
@@ -41,6 +45,7 @@ public class Order {
 
 
     @Column(name = "end_date")
+    @Convert(converter = LocalDateAttributeConverter.class)
     public LocalDate getEndDate() {
         return endDate;
     }
