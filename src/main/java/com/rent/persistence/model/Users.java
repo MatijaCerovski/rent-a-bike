@@ -19,6 +19,7 @@ public class Users {
     private List<Order> orders;
 
     @Id
+    @GeneratedValue
     @Column(name = "user_id")
     public int getUserId() {
         return userId;

@@ -13,6 +13,7 @@ public class UserRoles {
     private Users user;
 
     @Id
+    @GeneratedValue
     @Column(name = "user_role_id")
     public int getUserRoleId() {
         return userRoleId;
@@ -30,26 +31,6 @@ public class UserRoles {
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        UserRoles userRoles = (UserRoles) o;
-
-        if (userRoleId != userRoles.userRoleId) return false;
-        if (role != null ? !role.equals(userRoles.role) : userRoles.role != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = userRoleId;
-        result = 31 * result + (role != null ? role.hashCode() : 0);
-        return result;
     }
 
     @ManyToOne
