@@ -44,11 +44,14 @@ public class RegistrationController {
                                               BindingResult bindingResult){
 
         Users user = userUserDtoMapper.userDtoToUser(userRegistrationDto);
-        userService.saveUser(user);
+        //userService.saveUser(user);
+        Users testUser = userService.findByUsernameAndEmail(user.getUsername(), user.getEmail());
 
 
-        if (bindingResult.hasErrors()) {
-            return new ModelAndView("redirect:/registration");
+        if (bindingResult.hasErrors() || testUser != null) {
+            ModelAndView modelAndView = new ModelAndView("registration");
+            modelAndView.addObject("errorMessage", "User already exists or wrong credentials!");
+            return modelAndView;
         } else {
             return new ModelAndView("redirect:/login");
             // return "redirect:/login";
