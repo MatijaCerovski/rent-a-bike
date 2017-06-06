@@ -67,6 +67,7 @@ public class Bike {
     }
 
     @ManyToOne
+    @JoinColumn(name = "shop_id")
     public Shop getShop() {
         return shop;
     }

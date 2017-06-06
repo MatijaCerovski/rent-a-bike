@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add a bike</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+</head>
+<body>
+
+<div th:include="components/navbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+
+            <h3>Bikes</h3>
+            <a href="/add-bike"><input type="button" class="btn btn-primary" value="Add a bike"/></a>
+
+            <div class="table-responsive" th:if="${not #lists.isEmpty(bikes)}">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Model</th>
+                        <th>Maker</th>
+                        <th>Price</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="bike : ${bikes}">
+                        <td th:text="${bike.bikeId}"></td>
+                        <td th:text="${bike.maker}"></td>
+                        <td th:text="${bike.model}"></td>
+                        <td th:text="${bike.price}"></td>
+                        <td><a href="update-bike?id=${task.id}"><span class="glyphicon glyphicon-pencil"></span></a>
+                        </td>
+                        <td><a href="delete-bike?id=${task.id}"><span class="glyphicon glyphicon-trash"></span></a></td>
+                        <td><a href="reserve-bike?id=${task.id}">Reserve</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+</footer>
+
+</body>
+</html>
