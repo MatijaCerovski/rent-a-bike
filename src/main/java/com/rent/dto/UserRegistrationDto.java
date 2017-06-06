@@ -6,12 +6,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.stereotype.Repository;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
  * Created by Matija on 5.6.2017..
  */
+@Repository
 @Data @AllArgsConstructor @NoArgsConstructor
 @PasswordMatches
 public class UserRegistrationDto {
