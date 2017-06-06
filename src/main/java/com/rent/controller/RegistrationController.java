@@ -44,7 +44,6 @@ public class RegistrationController {
                                               BindingResult bindingResult){
 
         Users user = userUserDtoMapper.userDtoToUser(userRegistrationDto);
-        //userService.saveUser(user);
         Users testUser = userService.findByUsernameAndEmail(user.getUsername(), user.getEmail());
 
 
