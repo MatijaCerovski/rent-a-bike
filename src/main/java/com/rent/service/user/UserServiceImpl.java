@@ -5,6 +5,8 @@ import com.rent.persistence.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * Created by Matija on 30.5.2017..
  */
@@ -36,5 +38,10 @@ public class UserServiceImpl implements UserService {
             return null;
         }
         return  userRepository.findByUsernameAndEmail(username, email);
+    }
+
+    @Override
+    public List<Users> findAll() {
+        return userRepository.findAll();
     }
 }

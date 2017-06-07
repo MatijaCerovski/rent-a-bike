@@ -1,16 +1,24 @@
 package com.rent.persistence.model;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 /**
  * Created by Matija on 25.5.2017..
  */
 @Entity
+@NoArgsConstructor
 @Table(name = "user_roles")
 public class UserRoles {
     private int userRoleId;
     private String role;
     private Users user;
+
+    public UserRoles(Users user, String role) {
+        this.user = user;
+        this.role = role;
+    }
 
     @Id
     @GeneratedValue
@@ -33,7 +41,7 @@ public class UserRoles {
         this.role = role;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     public Users getUser() {
         return user;
