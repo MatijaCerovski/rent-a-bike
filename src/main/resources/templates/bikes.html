@@ -37,10 +37,9 @@
                         <td th:text="${bike.maker}"></td>
                         <td th:text="${bike.model}"></td>
                         <td th:text="${bike.price}"></td>
-                        <td><a href="update-bike?id=${task.id}"><span class="glyphicon glyphicon-pencil"></span></a>
-                        </td>
-                        <td><a href="delete-bike?id=${task.id}"><span class="glyphicon glyphicon-trash"></span></a></td>
-                        <td><a href="reserve-bike?id=${task.id}">Reserve</a></td>
+                        <td><a th:href="@{'/updateBike/' + ${bike.bikeId}}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                        <td><a th:href="@{'/deleteBike/' + ${bike.bikeId}}"><span class="glyphicon glyphicon-trash"></span></a></td>
+                        <td><a th:href="@{'/reserveBike/' + ${bike.bikeId}}">Reserve</a></td>
                     </tr>
                     </tbody>
                 </table>

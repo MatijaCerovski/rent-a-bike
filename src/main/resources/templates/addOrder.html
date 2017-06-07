@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Add Order</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+</head>
+<body>
+<div th:include="components/navbar"></div>
+
+<div class="container">
+    <div class="row">
+
+        <div class="form-group">
+            <div class="col-sm-12">
+                <h1>Add Order</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <form th:action="@{/addOrder}" th:object="${orderForm}" method="post" class="form-horizontal">
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="startDate"> Start Date: </label>
+                <div class="col-md-3">
+                    <input type="date" th:field="*{startDate}" name="startDate" id="startDate" class="form-control"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="endDate"> End Date: </label>
+                <div class="col-md-3">
+                    <input type="date" th:field="*{endDate}" name="endDate" id="endDate" class="form-control"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="bikeId"> Select Bike: </label>
+                <div class="col-md-3">
+                    <select name="bikeId" id="bikeId" th:field="*{bikeId}" class="form-control">
+                        <option th:each="bike : ${bikes}" th:value="${bike.bikeId}" th:text="${bike.model}"></option>
+
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group" th:if="${errorMessage}">
+                <div class="col-sm-offset-2 col-sm-3">
+                    <div class="alert alert-danger">
+                        <p class="error" th:text="${errorMessage}"></p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="submit" class="btn btn-primary" value="Add"/>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</div>
+
+<footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</footer>
+</body>
+</html>
