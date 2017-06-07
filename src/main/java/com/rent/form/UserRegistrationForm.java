@@ -1,4 +1,4 @@
-package com.rent.dto;
+package com.rent.form;
 
 import com.rent.validation.PasswordMatches;
 import com.rent.validation.ValidEmail;
@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
 @Repository
 @Data @AllArgsConstructor @NoArgsConstructor
 @PasswordMatches
-public class UserRegistrationDto {
+public class UserRegistrationForm {
 
     @NotNull
     @NotEmpty

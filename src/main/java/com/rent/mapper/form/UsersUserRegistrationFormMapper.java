@@ -1,6 +1,6 @@
-package com.rent.fasada;
+package com.rent.mapper.form;
 
-import com.rent.dto.UserRegistrationDto;
+import com.rent.form.UserRegistrationForm;
 import com.rent.persistence.model.UserInfo;
 import com.rent.persistence.model.UserRoles;
 import com.rent.persistence.model.Users;
@@ -15,17 +15,17 @@ import java.util.List;
  * Created by Matija on 6.6.2017..
  */
 @Component
-public class UserUserDtoMapper {
+public class UsersUserRegistrationFormMapper {
 
     @Autowired
     PasswordEncoder encoder;
 
-    public Users userDtoToUser(UserRegistrationDto userRegistrationDto){
+    public Users mapToEntity(UserRegistrationForm userRegistrationForm) {
 
         Users user = new Users();
-        user.setUsername(userRegistrationDto.getUsername());
-        user.setPassword(encoder.encode(userRegistrationDto.getPassword()));
-        user.setEmail(userRegistrationDto.getEmail());
+        user.setUsername(userRegistrationForm.getUsername());
+        user.setPassword(encoder.encode(userRegistrationForm.getPassword()));
+        user.setEmail(userRegistrationForm.getEmail());
         user.setEnabled(true);
 
         List<UserRoles> roles = new ArrayList<>();
@@ -36,9 +36,9 @@ public class UserUserDtoMapper {
         user.setUserRoles(roles);
 
         UserInfo userInfo = new UserInfo();
-        userInfo.setFirstName(userRegistrationDto.getFirstName());
-        userInfo.setLastName(userRegistrationDto.getLastName());
-        userInfo.setPhoneNumber(userRegistrationDto.getPhoneNumber());
+        userInfo.setFirstName(userRegistrationForm.getFirstName());
+        userInfo.setLastName(userRegistrationForm.getLastName());
+        userInfo.setPhoneNumber(userRegistrationForm.getPhoneNumber());
         userInfo.setUser(user);
         user.setUserInfo(userInfo);
 

@@ -1,12 +1,10 @@
 package com.rent.controller;
 
-import com.rent.dto.UserRegistrationDto;
-import com.rent.fasada.UserUserDtoMapper;
+import com.rent.form.UserRegistrationForm;
+import com.rent.mapper.form.UsersUserRegistrationFormMapper;
 import com.rent.persistence.model.Users;
-import com.rent.persistence.repository.UserRepository;
 import com.rent.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,44 +16,40 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
-/**
- * Created by Toni on 01-Jun-17.
- */
 @Controller
 @RequestMapping("/registration")
 public class RegistrationController {
 
     @Autowired
-    UserUserDtoMapper userUserDtoMapper;
+    private UserService userService;
+
     @Autowired
-    UserService userService;
+    private UsersUserRegistrationFormMapper usersUserRegistrationFormMapper;
 
     @GetMapping
     public String openRegistration(Model model) {
 
-        UserRegistrationDto userRegistrationDto = new UserRegistrationDto();
+        UserRegistrationForm userRegistrationForm = new UserRegistrationForm();
 
-        model.addAttribute("userRegistrationDto", userRegistrationDto);
+        model.addAttribute("userRegistrationForm", userRegistrationForm);
         return "registration";
     }
 
     @PostMapping
-    public ModelAndView registracijaKorisnika(@ModelAttribute("userRegistrationDto") @Valid UserRegistrationDto userRegistrationDto,
+    public ModelAndView registracijaKorisnika(@ModelAttribute("userRegistrationForm") @Valid UserRegistrationForm userRegistrationForm,
                                               BindingResult bindingResult){
 
-        Users user = userUserDtoMapper.userDtoToUser(userRegistrationDto);
-        //userService.saveUser(user);
-        Users testUser = userService.findByUsernameAndEmail(user.getUsername(), user.getEmail());
-
+        Users testUser = userService.findByUsernameAndEmail(userRegistrationForm.getUsername(), userRegistrationForm.getEmail());
 
         if (bindingResult.hasErrors() || testUser != null) {
             ModelAndView modelAndView = new ModelAndView("registration");
             modelAndView.addObject("errorMessage", "User already exists or wrong credentials!");
             return modelAndView;
         } else {
+            Users user = usersUserRegistrationFormMapper.mapToEntity(userRegistrationForm);
+            userService.saveUser(user);
             return new ModelAndView("redirect:/login");
             // return "redirect:/login";
         }
     }
-
 }

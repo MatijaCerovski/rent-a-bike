@@ -5,7 +5,7 @@ package com.rent.validation;
  */
 
 
-import com.rent.dto.UserRegistrationDto;
+import com.rent.form.UserRegistrationForm;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -19,7 +19,7 @@ public class PasswordMatchesValidator
     }
     @Override
     public boolean isValid(Object obj, ConstraintValidatorContext context){
-        UserRegistrationDto user = (UserRegistrationDto) obj;
+        UserRegistrationForm user = (UserRegistrationForm) obj;
         return user.getPassword().equals(user.getMatchingPassword());
     }
 }

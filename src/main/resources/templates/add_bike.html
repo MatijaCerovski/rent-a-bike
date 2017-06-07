@@ -19,33 +19,33 @@
                 </div>
             </div>
 
-            <form th:action="@{/add-bike}" method="post" class="form-horizontal">
+            <form th:action="@{/add-bike}" th:object="${bikeForm}" method="post" class="form-horizontal">
 
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="maker"> Maker: </label>
                     <div class="col-md-3">
-                        <input type="text" name="maker" id="maker" class="form-control"/>
+                        <input type="text" th:field="*{maker}" name="maker" id="maker" class="form-control"/>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="model"> Model: </label>
                     <div class="col-md-3">
-                        <input type="text" name="model" id="model" class="form-control"/>
+                        <input type="text" th:field="*{model}" name="model" id="model" class="form-control"/>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="col-md-2 control-label" for="numInStock"> Number in stock: </label>
-                    <div class="col-md-3">
-                        <input type="text" name="numInStock" id="numInStock" class="form-control"/>
-                    </div>
-                </div>
+                <!--<div class="form-group">-->
+                    <!--<label class="col-md-2 control-label" for="numInStock"> Number in stock: </label>-->
+                    <!--<div class="col-md-3">-->
+                        <!--<input type="text" name="numInStock" id="numInStock" class="form-control"/>-->
+                    <!--</div>-->
+                <!--</div>-->
 
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="price"> Price (per day): </label>
                     <div class="col-md-3">
-                        <input type="text" name="price" id="price" class="form-control"/>
+                        <input type="text" th:field="*{price}" name="price" id="price" class="form-control"/>
                     </div>
                 </div>
 
@@ -56,6 +56,14 @@
                         <!--</div>-->
                     <!--</div>-->
                 <!--</div>-->
+
+                <div class="form-group" th:if="${errorMessage}">
+                    <div class="col-sm-offset-2 col-sm-3">
+                        <div class="alert alert-danger">
+                            <p class="error" th:text="${errorMessage}"></p>
+                        </div>
+                    </div>
+                </div>
 
 
                 <div class="form-group">

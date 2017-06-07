@@ -48,7 +48,7 @@ public class Bike {
     }
 
     @Basic
-    @Column(name = "price")
+    @Column(name = "price", precision = 10, scale = 2)
     public BigDecimal getPrice() {
         return price;
     }
