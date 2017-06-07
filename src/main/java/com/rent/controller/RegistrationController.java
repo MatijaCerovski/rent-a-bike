@@ -1,24 +1,55 @@
 package com.rent.controller;
 
-import org.springframework.http.HttpRequest;
+import com.rent.form.UserRegistrationForm;
+import com.rent.mapper.form.UsersUserRegistrationFormMapper;
+import com.rent.persistence.model.Users;
+import com.rent.service.user.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import javax.servlet.http.HttpServletRequest;
-/**
- * Created by Toni on 01-Jun-17.
- */
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
+
 @Controller
+@RequestMapping("/registration")
 public class RegistrationController {
 
-    @GetMapping("/registration")
-    public String openRegistration() {
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private UsersUserRegistrationFormMapper usersUserRegistrationFormMapper;
+
+    @GetMapping
+    public String openRegistration(Model model) {
+
+        UserRegistrationForm userRegistrationForm = new UserRegistrationForm();
+
+        model.addAttribute("userRegistrationForm", userRegistrationForm);
         return "registration";
     }
 
-    @GetMapping("/registration-error")
-    public String openErrorRegistration(Model model) {
-        model.addAttribute("registrationError", true);
-        return "registration";
+    @PostMapping
+    public ModelAndView registracijaKorisnika(@ModelAttribute("userRegistrationForm") @Valid UserRegistrationForm userRegistrationForm,
+                                              BindingResult bindingResult){
+
+        Users testUser = userService.findByUsernameAndEmail(userRegistrationForm.getUsername(), userRegistrationForm.getEmail());
+
+        if (bindingResult.hasErrors() || testUser != null) {
+            ModelAndView modelAndView = new ModelAndView("registration");
+            modelAndView.addObject("errorMessage", "User already exists or wrong credentials!");
+            return modelAndView;
+        } else {
+            Users user = usersUserRegistrationFormMapper.mapToEntity(userRegistrationForm);
+            userService.saveUser(user);
+            return new ModelAndView("redirect:/login");
+            // return "redirect:/login";
+        }
     }
 }

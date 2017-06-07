@@ -5,6 +5,8 @@ import com.rent.persistence.repository.BikeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class BikeServiceImpl implements BikeService {
 
@@ -27,4 +29,8 @@ public class BikeServiceImpl implements BikeService {
         return bikeRepository.save(bike);
     }
 
+    @Override
+    public List<Bike> listAllBikes() {
+        return bikeRepository.findAll();
+    }
 }

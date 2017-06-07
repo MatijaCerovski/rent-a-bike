@@ -33,7 +33,7 @@ public class UserRoles {
         this.role = role;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false)
     public Users getUser() {
         return user;

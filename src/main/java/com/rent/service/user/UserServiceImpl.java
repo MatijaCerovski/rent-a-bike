@@ -21,4 +21,20 @@ public class UserServiceImpl implements UserService {
         }
         return userRepository.findByUsername(username);
     }
+
+    @Override
+    public Users saveUser(Users users) {
+        return userRepository.save(users);
+    }
+
+    @Override
+    public Users findByUsernameAndEmail(String username, String email) {
+        if(username == null){
+            return null;
+        }
+        if(email == null){
+            return null;
+        }
+        return  userRepository.findByUsernameAndEmail(username, email);
+    }
 }
