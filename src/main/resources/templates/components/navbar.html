@@ -22,6 +22,7 @@
                 <li><a href="/orders">Reservations</a></li>
                 <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/employers">Employers</a></li>
                 <li sec:authorize="isAnonymous()"><a href="/login">Login</a></li>
+                <li sec:authorize="isAnonymous()"><a href="/registration">Registration</a></li>
                 <li sec:authorize="isAuthenticated()"><a href="/logout">Logout</a></li>
             </ul>
         </div>
