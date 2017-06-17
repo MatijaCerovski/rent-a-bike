@@ -71,6 +71,20 @@
                 </div>
 
                 <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-3">
+                        <div th:if="${#fields.hasErrors()}" class="alert alert-danger">
+                            <p th:if="${#fields.hasErrors('firstName')}" class="error" th:errors="*{firstName}">></p>
+                            <p th:if="${#fields.hasErrors('lastName')}" class="error" th:errors="*{lastName}">></p>
+                            <p th:if="${#fields.hasErrors('phoneNumber')}" class="error" th:errors="*{phoneNumber}">></p>
+                            <p th:if="${#fields.hasErrors('email')}" class="error" th:errors="*{email}">></p>
+                            <p th:if="${#fields.hasErrors('username')}" class="error" th:errors="*{username}">></p>
+                            <p th:if="${#fields.hasErrors('password')}" class="error" th:errors="*{password}">></p>
+                            <p th:if="${#fields.hasErrors('matchingPassword')}" class="error" th:errors="*{matchingPassword}">></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <input type="submit" class="btn btn-primary" value="Register"/>
                     </div>

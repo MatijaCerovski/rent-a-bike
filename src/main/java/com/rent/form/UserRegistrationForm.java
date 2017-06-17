@@ -19,39 +19,39 @@ import javax.validation.constraints.Size;
 @PasswordMatches
 public class UserRegistrationForm {
 
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "First name is required")
+    @NotEmpty(message = "First name is required")
     @Size(max=40)
     private String firstName;
 
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "Last name is required")
+    @NotEmpty(message = "Last name is required")
     @Size(max=40)
     private String lastName;
 
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "Phone number is required")
+    @NotEmpty(message = "Phone number is required")
     @Size(max=15)
     private String phoneNumber;
 
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "Email is required")
+    @NotEmpty(message = "Email is required")
     @Size(max=254)
-    @ValidEmail
+    @ValidEmail(message = "Please enter a valid email address")
     private String email;
 
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "Username is required")
+    @NotEmpty(message = "Username is required")
     @Size(max=45)
     private String username;
 
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "Password is required")
+    @NotEmpty(message = "Password is required")
     @Size(max=60)
     private String password;
 
-    @NotNull
-    @NotEmpty
+    @NotNull(message = " field is required")
+    @NotEmpty(message = " field is required")
     @Size(max=60)
     private String matchingPassword;
 

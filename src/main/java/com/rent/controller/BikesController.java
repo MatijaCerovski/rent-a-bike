@@ -4,6 +4,7 @@ import com.rent.form.BikeForm;
 import com.rent.mapper.form.BikeFormMapper;
 import com.rent.persistence.model.Bike;
 import com.rent.service.bike.BikeService;
+import com.rent.validation.BikeFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +31,9 @@ public class BikesController {
     @Autowired
     BikeFormMapper bikeFormMapper;
 
+    @Autowired
+    BikeFormValidator bikeFormValidator;
+
     @GetMapping("/bikes")
     public String openBikesList(Model model) {
         model.addAttribute("bikes", bikeService.listAllBikes());
@@ -46,10 +50,10 @@ public class BikesController {
     @PostMapping
     public ModelAndView saveBike(@ModelAttribute("bikeForm") @Valid BikeForm bikeForm, BindingResult bindingResult) {
 
+        bikeFormValidator.validate(bikeForm, bindingResult);
+
         if (bindingResult.hasErrors()) {
-            ModelAndView modelAndView = new ModelAndView("registration");
-            modelAndView.addObject("errorMessage", bindingResult.getAllErrors());
-            return modelAndView;
+            return new ModelAndView("add_bike");
         } else {
             Bike newBike = bikeFormMapper.mapToEntity(bikeForm);
             bikeService.save(newBike);

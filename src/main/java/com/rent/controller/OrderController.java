@@ -9,6 +9,7 @@ import com.rent.service.order.OrderService;
 import com.rent.service.shop.ShopService;
 import com.rent.service.user.UserService;
 
+import com.rent.validation.OrderFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -40,6 +41,9 @@ public class OrderController {
     @Autowired
     private OrderFormMapper orderFormMapper;
 
+    @Autowired
+    private OrderFormValidator orderFormValidator;
+
     @GetMapping("/orders")
     @PreAuthorize("hasAnyRole('ROLE_USER' , 'ROLE_ADMIN')")
     public String orderList(Model model)
@@ -65,10 +69,10 @@ public class OrderController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView saveOrder(@ModelAttribute("orderForm") @Valid OrderForm orderForm, BindingResult bindingResult) {
 
+        orderFormValidator.validate(orderForm, bindingResult);
+
         if (bindingResult.hasErrors()) {
-            ModelAndView modelAndView = new ModelAndView("addOrder");
-            modelAndView.addObject("errorMessage", bindingResult.getAllErrors());
-            return modelAndView;
+            return new ModelAndView("addOrder");
         } else {
             Order newOrder = orderFormMapper.mapToEntity(orderForm);
             orderService.save(newOrder);
@@ -94,10 +98,10 @@ public class OrderController {
     @PreAuthorize("hasAnyRole('ROLE_USER' , 'ROLE_ADMIN')")
     public ModelAndView saveOrderWithBike(@ModelAttribute("orderForm") @Valid OrderForm orderForm, BindingResult bindingResult) {
 
+        orderFormValidator.validate(orderForm, bindingResult);
+
         if (bindingResult.hasErrors()) {
-            ModelAndView modelAndView = new ModelAndView("reserveBike");
-            modelAndView.addObject("errorMessage", bindingResult.getAllErrors());
-            return modelAndView;
+            return new ModelAndView("reserveBike");
         } else {
             Order newOrder = orderFormMapper.mapToEntity(orderForm);
             orderService.save(newOrder);

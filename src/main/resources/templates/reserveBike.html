@@ -48,6 +48,14 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-3">
+                    <div th:if="${#fields.hasErrors()}" class="alert alert-danger">
+                        <p th:if="${#fields.hasErrors('startDate')}" class="error" th:errors="*{startDate}">></p>
+                        <p th:if="${#fields.hasErrors('endDate')}" class="error" th:errors="*{endDate}">></p>
+                    </div>
+                </div>
+            </div>
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
@@ -56,7 +64,6 @@
             </div>
         </form>
     </div>
-
 
 </div>
 

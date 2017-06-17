@@ -41,15 +41,17 @@ public class RegistrationController {
 
         Users testUser = userService.findByUsernameAndEmail(userRegistrationForm.getUsername(), userRegistrationForm.getEmail());
 
-        if (bindingResult.hasErrors() || testUser != null) {
+        if (bindingResult.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView("registration");
-            modelAndView.addObject("errorMessage", "User already exists or wrong credentials!");
+            return modelAndView;
+        } else if(testUser != null) {
+            ModelAndView modelAndView = new ModelAndView("registration");
+            modelAndView.addObject("errorMessage", "User already exists");
             return modelAndView;
         } else {
             Users user = usersUserRegistrationFormMapper.mapToEntity(userRegistrationForm);
             userService.saveUser(user);
             return new ModelAndView("redirect:/login");
-            // return "redirect:/login";
         }
     }
 }

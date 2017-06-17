@@ -1,19 +1,13 @@
 package com.rent.form;
 
-import com.rent.persistence.model.Bike;
-import com.rent.persistence.model.Users;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Repository;
 
-import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.List;
 
 /**
  * Created by Toni on 07-Jun-17.
@@ -25,12 +19,12 @@ import java.util.List;
 @NoArgsConstructor
 public class OrderForm {
 
-    @NotNull
+    @NotNull(message = "Start date is required")
     @NotEmpty
     @Size(max = 12)
     private String startDate;
 
-    @NotNull
+    @NotNull(message = "End date is required")
     @NotEmpty
     @Size(max = 12)
     private String endDate;
@@ -38,4 +32,11 @@ public class OrderForm {
     @NotNull
     private int bikeId;
 
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
 }

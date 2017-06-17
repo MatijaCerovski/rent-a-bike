@@ -12,5 +12,4 @@ public interface BikeService {
 
     Bike save(Bike bike);
 
-
 }

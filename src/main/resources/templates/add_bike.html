@@ -49,22 +49,15 @@
                     </div>
                 </div>
 
-                <!--<div class="form-group" th:if="${loginError}">-->
-                    <!--<div class="col-sm-offset-2 col-sm-3">-->
-                        <!--<div class="alert alert-danger">-->
-                            <!--<p class="error">Wrong username or password</p>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-                <div class="form-group" th:if="${errorMessage}">
+                <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-3">
-                        <div class="alert alert-danger">
-                            <p class="error" th:text="${errorMessage}"></p>
+                        <div th:if="${#fields.hasErrors()}" class="alert alert-danger">
+                            <p th:if="${#fields.hasErrors('maker')}" class="error" th:errors="*{maker}">></p>
+                            <p th:if="${#fields.hasErrors('model')}" class="error" th:errors="*{model}">></p>
+                            <p th:if="${#fields.hasErrors('price')}" class="error" th:errors="*{price}">></p>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
