@@ -60,4 +60,5 @@ public class BikesController {
             return new ModelAndView("redirect:/bikes");
         }
     }
+
 }
