@@ -6,9 +6,10 @@ import java.util.List;
 
 public interface OrderService {
 
-    Order findById(Integer orderId);
-
-    Order save(Order order);
-
     List<Order> findAll();
+    Order findById(Integer orderId);
+    Order save(Order order);
+    void delete(Order order);
+
+
 }

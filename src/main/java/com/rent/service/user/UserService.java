@@ -12,6 +12,7 @@ public interface UserService {
     Users findByUsername(String username);
     Users saveUser(Users users);
     Users findByUsernameAndEmail(String username, String email);
+    Users findById(Integer id);
     List<Users> findAll();
 
 }

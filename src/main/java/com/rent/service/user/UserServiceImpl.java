@@ -41,6 +41,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Users findById(Integer id)
+    {
+        if (id == null)
+        {
+            return null;
+        }
+        return userRepository.findByUserId(id);
+    }
+
+    @Override
     public List<Users> findAll() {
         return userRepository.findAll();
     }
