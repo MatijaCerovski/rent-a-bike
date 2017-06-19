@@ -97,26 +97,26 @@ public class OrderRestController {
         return true;
     }
 
-//    @PutMapping()
-//    public boolean update (@RequestBody OrderDto orderDto)
-//    {
-//        Bike bike = bikeService.findById(orderDto.getBikeId());
-//        Users user = userService.findById(orderDto.getUserId());
-//
-//        Order order = new Order();
-//        order.setUser(user);
-//        order.setBike(bike);
-//
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//        LocalDate startDate = LocalDate.parse(orderDto.getStartDate(), formatter);
-//        order.setStartDate(startDate);
-//        LocalDate endDate = LocalDate.parse(orderDto.getEndDate(), formatter);
-//        order.setEndDate(endDate);
-//
-//        order.setOrderStatus(orderDto.getStatus());
-//        orderService.update(order);
-//        return true;
-//    }
+    @PutMapping()
+    public boolean update (@RequestBody OrderDto orderDto)
+    {
+        Bike bike = bikeService.findById(orderDto.getBikeId());
+        Users user = userService.findById(orderDto.getUserId());
+
+        Order order = orderService.findById(orderDto.getOrderId());
+        order.setUser(user);
+        order.setBike(bike);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate startDate = LocalDate.parse(orderDto.getStartDate(), formatter);
+        order.setStartDate(startDate);
+        LocalDate endDate = LocalDate.parse(orderDto.getEndDate(), formatter);
+        order.setEndDate(endDate);
+
+        order.setOrderStatus(orderDto.getStatus());
+        orderService.save(order);
+        return true;
+    }
 
 
     @DeleteMapping("/{id}")
