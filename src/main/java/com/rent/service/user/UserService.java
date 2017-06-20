@@ -13,5 +13,9 @@ public interface UserService {
     Users saveUser(Users users);
     Users findByUsernameAndEmail(String username, String email);
     List<Users> findAll();
+    List<Users> findAllEmployers();
+    List<Users> findAllOthers();
+    Users makeEmployer(String username);
+    Users letHimGo(String username);
 
 }
