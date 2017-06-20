@@ -14,6 +14,12 @@ public class OrderServiceImpl implements OrderService {
     private OrderRepository orderRepository;
 
     @Override
+    public List<Order> findAll()
+    {
+        return orderRepository.findAll();
+    }
+
+    @Override
     public Order findById(Integer orderId) {
         if (orderId == null) {
             return null;
@@ -22,19 +28,21 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order save(Order Order) {
-        if (Order == null) {
+    public Order save(Order order) {
+        if (order == null) {
             return null;
         }
-        return orderRepository.save(Order);
+        return orderRepository.save(order);
     }
 
     @Override
-    public List<Order> findAll()
+    public void delete(Order order)
     {
-        return orderRepository.findAll();
+        if(order == null)
+        {
+
+        }
+        orderRepository.delete(order);
     }
-
-
 
 }
