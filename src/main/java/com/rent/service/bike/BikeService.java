@@ -12,4 +12,6 @@ public interface BikeService {
 
     Bike save(Bike bike);
 
+    void delete(Bike bike);
+
 }

@@ -1,6 +1,10 @@
 package com.rent.persistence.model;
 
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.CascadeType;
+
 import javax.persistence.*;
+import javax.persistence.Entity;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -58,6 +62,7 @@ public class Bike {
     }
 
     @OneToMany(mappedBy = "bike")
+    @Cascade(CascadeType.DELETE)
     public List<Order> getOrders() {
         return orders;
     }

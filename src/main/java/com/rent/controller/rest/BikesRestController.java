@@ -6,9 +6,7 @@ import com.rent.persistence.model.Bike;
 import com.rent.service.bike.BikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +16,7 @@ import java.util.List;
  */
 
 @RestController
+@RequestMapping("/api/bikes")
 public class BikesRestController {
 
     @Autowired
@@ -26,7 +25,7 @@ public class BikesRestController {
     @Autowired
     BikeDtoMapper bikeDtoMapper;
 
-    @GetMapping("/api/bikes")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<BikeDto> getAllBikes() {
 
@@ -39,4 +38,28 @@ public class BikesRestController {
 
         return bikeDtos;
     }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void saveBike(BikeDto bikeDto) {
+
+        Bike bike = bikeDtoMapper.mapToEntity(bikeDto);
+        bikeService.save(bike);
+    }
+
+    @PutMapping
+    public void updateBike(BikeDto bikeDto) {
+        Bike bike = bikeService.findById(bikeDto.getBikeId());
+        bike.setMaker(bikeDto.getMaker());
+        bike.setModel(bikeDto.getModel());
+        bike.setPrice(bikeDto.getPrice());
+        bikeService.save(bike);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete (@PathVariable Integer id)
+    {
+        bikeService.delete(bikeService.findById(id));
+    }
+
 }

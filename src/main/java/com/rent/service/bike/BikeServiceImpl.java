@@ -30,6 +30,13 @@ public class BikeServiceImpl implements BikeService {
     }
 
     @Override
+    public void delete(Bike bike) {
+        if (bike != null) {
+            bikeRepository.delete(bike);
+        }
+    }
+
+    @Override
     public List<Bike> listAllBikes() {
         return bikeRepository.findAll();
     }
