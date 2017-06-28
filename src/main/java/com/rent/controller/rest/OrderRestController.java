@@ -58,10 +58,10 @@ public class OrderRestController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public OrderDto getOrder(@PathVariable Integer id)
+    public OrderDto getOrder(@PathVariable String id)
     {
         OrderDto orderDto = new OrderDto();
-        Order order = orderService.findById(id);
+        Order order = orderService.findById(Integer.parseInt(id));
 
 
         Bike bike = order.getBike();

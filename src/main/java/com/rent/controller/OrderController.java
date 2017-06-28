@@ -45,7 +45,7 @@ public class OrderController {
     private OrderFormValidator orderFormValidator;
 
     @GetMapping("/orders")
-    @PreAuthorize("hasAnyRole('ROLE_USER' , 'ROLE_ADMIN')")
+    //@PreAuthorize("hasAnyRole('ROLE_USER' , 'ROLE_ADMIN')")
     public String orderList(Model model)
     {
         model.addAttribute("orders",orderService.findAll());
@@ -53,7 +53,7 @@ public class OrderController {
     }
 
     @GetMapping("/addOrder")
-    @PreAuthorize("hasAnyRole('ROLE_USER' , 'ROLE_ADMIN')")
+    //@PreAuthorize("hasAnyRole('ROLE_USER' , 'ROLE_ADMIN')")
     public String addOrder(Model model)
     {
         OrderForm orderForm = new OrderForm();
@@ -81,7 +81,7 @@ public class OrderController {
     }
 
     @GetMapping("/reserveBike/{bikeId}")
-    @PreAuthorize("hasAnyRole('ROLE_USER' , 'ROLE_ADMIN')")
+    //@PreAuthorize("hasAnyRole('ROLE_USER' , 'ROLE_ADMIN')")
     public String reserveBike(Model model, @PathVariable String bikeId)
     {
         OrderForm orderForm = new OrderForm();

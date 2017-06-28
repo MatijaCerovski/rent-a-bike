@@ -19,6 +19,18 @@ public class Order {
     private Bike bike;
     private OrderStatus status;
 
+    public Order()
+    {
+
+    }
+
+    public Order(int OrderId, LocalDate StartDate, LocalDate EndDate)
+    {
+        this.orderId = OrderId;
+        this.startDate = StartDate;
+        this.endDate = EndDate;
+    }
+
     @Id
     @GeneratedValue
     @Column(name = "order_id")
