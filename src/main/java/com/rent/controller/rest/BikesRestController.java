@@ -57,8 +57,7 @@ public class BikesRestController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete (@PathVariable Integer id)
-    {
+    public void delete(@PathVariable Integer id) {
         bikeService.delete(bikeService.findById(id));
     }
 

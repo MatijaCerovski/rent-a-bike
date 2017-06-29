@@ -10,14 +10,23 @@ import java.util.List;
 public interface UserService {
 
     Users findByUsername(String username);
+
     Users findByEmail(String email);
+
     Users saveUser(Users users);
+
     Users findByUsernameAndEmail(String username, String email);
+
     Users findById(Integer id);
+
     List<Users> findAll();
+
     List<Users> findAllEmployers();
+
     List<Users> findAllOthers();
+
     Users makeEmployer(String username);
+
     Users letHimGo(String username);
 
 }

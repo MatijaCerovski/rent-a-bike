@@ -18,7 +18,7 @@ public class ProfileController {
 
     @GetMapping()
     @PreAuthorize("hasAnyRole('ROLE_USER' , 'ROLE_ADMIN')")
-    public String openProfile(Model model, Principal principal){
+    public String openProfile(Model model, Principal principal) {
 
 
         return "profile";

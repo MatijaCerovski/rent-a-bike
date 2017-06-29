@@ -27,16 +27,14 @@ public class EmployerController {
 
     @GetMapping("/makeEmployer/{username}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public String makeEmployer(@PathVariable String username, Model model)
-    {
+    public String makeEmployer(@PathVariable String username, Model model) {
         userService.makeEmployer(username);
         return employersList(model);
     }
 
     @GetMapping("/letHimGo/{username}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public String letHimGo(@PathVariable String username, Model model)
-    {
+    public String letHimGo(@PathVariable String username, Model model) {
         userService.letHimGo(username);
         return employersList(model);
     }

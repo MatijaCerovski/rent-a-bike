@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Users findByUsername(String username) {
-        if(username == null){
+        if (username == null) {
             return null;
         }
         return userRepository.findByUsername(username);
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Users findByEmail(String email) {
-        if(email == null){
+        if (email == null) {
             return null;
         }
         return userRepository.findByEmail(email);
@@ -45,20 +45,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Users findByUsernameAndEmail(String username, String email) {
-        if(username == null){
+        if (username == null) {
             return null;
         }
-        if(email == null){
+        if (email == null) {
             return null;
         }
-        return  userRepository.findByUsernameAndEmail(username, email);
+        return userRepository.findByUsernameAndEmail(username, email);
     }
 
     @Override
-    public Users findById(Integer id)
-    {
-        if (id == null)
-        {
+    public Users findById(Integer id) {
+        if (id == null) {
             return null;
         }
         return userRepository.findByUserId(id);
@@ -73,9 +71,9 @@ public class UserServiceImpl implements UserService {
     public List<Users> findAllEmployers() {
         List<Users> allUsers = userRepository.findAll();
         List<Users> employers = new ArrayList<>();
-        for (Users user: allUsers) {
+        for (Users user : allUsers) {
             boolean isAdmin = false;
-            for (UserRoles userRole: user.getUserRoles()) {
+            for (UserRoles userRole : user.getUserRoles()) {
                 if (userRole.getRole().equals("ROLE_ADMIN")) {
                     isAdmin = true;
                 }
@@ -91,9 +89,9 @@ public class UserServiceImpl implements UserService {
     public List<Users> findAllOthers() {
         List<Users> allUsers = userRepository.findAll();
         List<Users> otherUsers = new ArrayList<>();
-        for (Users user: allUsers) {
+        for (Users user : allUsers) {
             boolean isAdmin = false;
-            for (UserRoles userRole: user.getUserRoles()) {
+            for (UserRoles userRole : user.getUserRoles()) {
                 if (userRole.getRole().equals("ROLE_ADMIN")) {
                     isAdmin = true;
                 }
@@ -133,7 +131,7 @@ public class UserServiceImpl implements UserService {
         int roleId = 0;
         List<UserRoles> userRoles = user.getUserRoles();
         for (int i = 0; i < userRoles.size(); i++) {
-            if(userRoles.get(i).getRole().equals("ROLE_ADMIN")) {
+            if (userRoles.get(i).getRole().equals("ROLE_ADMIN")) {
                 roleId = userRoles.get(i).getUserRoleId();
                 userRoles.remove(i);
             }
@@ -141,7 +139,7 @@ public class UserServiceImpl implements UserService {
         user.setUserRoles(userRoles);
         user = userRepository.save(user);
 
-        if(roleId != 0) {
+        if (roleId != 0) {
             userRoleService.deleteRole(roleId);
         }
         return user;

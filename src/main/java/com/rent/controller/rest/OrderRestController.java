@@ -34,13 +34,11 @@ public class OrderRestController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<OrderDto> getAllOrders()
-    {
+    public List<OrderDto> getAllOrders() {
         List<OrderDto> orderDtos = new ArrayList<OrderDto>();
         List<Order> orders = orderService.findAll();
 
-        for(Order order : orders)
-        {
+        for (Order order : orders) {
             OrderDto orderDto = new OrderDto();
             Bike bike = order.getBike();
             Users user = order.getUser();
@@ -58,8 +56,7 @@ public class OrderRestController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public OrderDto getOrder(@PathVariable String id)
-    {
+    public OrderDto getOrder(@PathVariable String id) {
         OrderDto orderDto = new OrderDto();
         Order order = orderService.findById(Integer.parseInt(id));
 
@@ -78,7 +75,7 @@ public class OrderRestController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public boolean save(@RequestBody OrderDto orderDto){
+    public boolean save(@RequestBody OrderDto orderDto) {
         Bike bike = bikeService.findById(orderDto.getBikeId());
         Users user = userService.findById(orderDto.getUserId());
 
@@ -98,8 +95,7 @@ public class OrderRestController {
     }
 
     @PutMapping()
-    public boolean update (@RequestBody OrderDto orderDto)
-    {
+    public boolean update(@RequestBody OrderDto orderDto) {
         Bike bike = bikeService.findById(orderDto.getBikeId());
         Users user = userService.findById(orderDto.getUserId());
 
@@ -120,8 +116,7 @@ public class OrderRestController {
 
 
     @DeleteMapping("/{id}")
-    public void delete (@PathVariable Integer id)
-    {
+    public void delete(@PathVariable Integer id) {
         orderService.delete(orderService.findById(id));
     }
 

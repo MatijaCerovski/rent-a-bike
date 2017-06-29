@@ -2,11 +2,9 @@ package com.rent.security;
 
 import com.rent.persistence.model.UserRoles;
 import com.rent.persistence.model.Users;
-import com.rent.persistence.repository.UserRepository;
 import com.rent.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,7 +31,7 @@ public class DatabaseUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Users user = userService.findByUsername(username);
-        if(user == null){
+        if (user == null) {
             return null;
         }
 
@@ -63,7 +61,6 @@ public class DatabaseUserDetailsService implements UserDetailsService {
 
         return Result;
     }
-
 
 
 }

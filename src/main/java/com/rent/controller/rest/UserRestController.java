@@ -26,28 +26,26 @@ public class UserRestController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<UsersDto> getAllUsers(){
+    public List<UsersDto> getAllUsers() {
 
         List<UsersDto> usersDtos = new ArrayList<>();
         List<Users> users = userService.findAll();
 
-        for(Users user : users){
+        for (Users user : users) {
             usersDtos.add(usersUserDtoMapper.mapFromEntity(user));
         }
-        return  usersDtos;
+        return usersDtos;
     }
 
     @GetMapping("/username/{username}")
     @ResponseStatus(HttpStatus.OK)
-    public UsersDto getUserByUsername(@PathVariable String username)
-    {
+    public UsersDto getUserByUsername(@PathVariable String username) {
         return usersUserDtoMapper.mapFromEntity(userService.findByUsername(username));
     }
 
     @GetMapping("/email/{email:.+}")
     @ResponseStatus(HttpStatus.OK)
-    public UsersDto getUserByEmail(@PathVariable String email)
-    {
+    public UsersDto getUserByEmail(@PathVariable String email) {
         return usersUserDtoMapper.mapFromEntity(userService.findByEmail(email));
     }
 

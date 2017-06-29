@@ -1,14 +1,11 @@
 package com.rent.controller;
 
-import com.rent.form.BikeForm;
 import com.rent.form.OrderForm;
 import com.rent.mapper.form.OrderFormMapper;
-import com.rent.persistence.model.*;
+import com.rent.persistence.model.Bike;
+import com.rent.persistence.model.Order;
 import com.rent.service.bike.BikeService;
 import com.rent.service.order.OrderService;
-import com.rent.service.shop.ShopService;
-import com.rent.service.user.UserService;
-
 import com.rent.validation.OrderFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -46,16 +43,14 @@ public class OrderController {
 
     @GetMapping("/orders")
     //@PreAuthorize("hasAnyRole('ROLE_USER' , 'ROLE_ADMIN')")
-    public String orderList(Model model)
-    {
-        model.addAttribute("orders",orderService.findAll());
+    public String orderList(Model model) {
+        model.addAttribute("orders", orderService.findAll());
         return "orders";
     }
 
     @GetMapping("/addOrder")
     //@PreAuthorize("hasAnyRole('ROLE_USER' , 'ROLE_ADMIN')")
-    public String addOrder(Model model)
-    {
+    public String addOrder(Model model) {
         OrderForm orderForm = new OrderForm();
         List<Bike> bikes = bikeService.listAllBikes();
         model.addAttribute("bikes", bikes);
@@ -82,8 +77,7 @@ public class OrderController {
 
     @GetMapping("/reserveBike/{bikeId}")
     //@PreAuthorize("hasAnyRole('ROLE_USER' , 'ROLE_ADMIN')")
-    public String reserveBike(Model model, @PathVariable String bikeId)
-    {
+    public String reserveBike(Model model, @PathVariable String bikeId) {
         OrderForm orderForm = new OrderForm();
         orderForm.setBikeId(Integer.parseInt(bikeId));
         List<Bike> bikes = bikeService.listAllBikes();

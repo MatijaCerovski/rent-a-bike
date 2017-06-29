@@ -2,8 +2,8 @@ package com.rent.converter;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
-import java.time.LocalDate;
 import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  * Created by Toni on 06-Jun-17.

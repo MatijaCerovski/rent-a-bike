@@ -1,10 +1,9 @@
 package com.rent.persistence.model;
 
-import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
 import java.math.BigDecimal;
 import java.util.List;
 

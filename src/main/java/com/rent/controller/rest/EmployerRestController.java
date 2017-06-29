@@ -36,7 +36,7 @@ public class EmployerRestController {
 
         employersList.addAll(employers.stream().map(employer -> usersUserDtoMapper.mapFromEntity(employer)).collect(Collectors.toList()));
 
-        for (Users other: otherUsers) {
+        for (Users other : otherUsers) {
             othersList.add(usersUserDtoMapper.mapFromEntity(other));
         }
 

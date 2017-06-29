@@ -19,13 +19,11 @@ public class Order {
     private Bike bike;
     private OrderStatus status;
 
-    public Order()
-    {
+    public Order() {
 
     }
 
-    public Order(int OrderId, LocalDate StartDate, LocalDate EndDate)
-    {
+    public Order(int OrderId, LocalDate StartDate, LocalDate EndDate) {
         this.orderId = OrderId;
         this.startDate = StartDate;
         this.endDate = EndDate;
@@ -43,7 +41,6 @@ public class Order {
     }
 
 
-
     @Column(name = "start_date")
     @Convert(converter = LocalDateAttributeConverter.class)
     public LocalDate getStartDate() {
@@ -53,7 +50,6 @@ public class Order {
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
-
 
 
     @Column(name = "end_date")
@@ -69,9 +65,15 @@ public class Order {
 
     @Column(name = "order_status")
     @Enumerated(EnumType.STRING)
-    public OrderStatus getOrderStatus(){return status;}
+    public OrderStatus getOrderStatus() {
+        return status;
+    }
 
-    public void setOrderStatus(OrderStatus status){this.status = status;};
+    public void setOrderStatus(OrderStatus status) {
+        this.status = status;
+    }
+
+    ;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

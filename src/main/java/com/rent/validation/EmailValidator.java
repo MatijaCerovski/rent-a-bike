@@ -1,9 +1,10 @@
 package com.rent.validation;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by Matija on 5.6.2017..
  */

@@ -14,8 +14,7 @@ public class OrderServiceImpl implements OrderService {
     private OrderRepository orderRepository;
 
     @Override
-    public List<Order> findAll()
-    {
+    public List<Order> findAll() {
         return orderRepository.findAll();
     }
 
@@ -36,10 +35,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void delete(Order order)
-    {
-        if(order == null)
-        {
+    public void delete(Order order) {
+        if (order == null) {
 
         }
         orderRepository.delete(order);

@@ -37,14 +37,14 @@ public class RegistrationController {
 
     @PostMapping
     public ModelAndView registracijaKorisnika(@ModelAttribute("userRegistrationForm") @Valid UserRegistrationForm userRegistrationForm,
-                                              BindingResult bindingResult){
+                                              BindingResult bindingResult) {
 
         Users testUser = userService.findByUsernameAndEmail(userRegistrationForm.getUsername(), userRegistrationForm.getEmail());
 
         if (bindingResult.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView("registration");
             return modelAndView;
-        } else if(testUser != null) {
+        } else if (testUser != null) {
             ModelAndView modelAndView = new ModelAndView("registration");
             modelAndView.addObject("errorMessage", "User already exists");
             return modelAndView;

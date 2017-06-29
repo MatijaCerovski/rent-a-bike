@@ -1,11 +1,9 @@
 package com.rent.dto;
 
+import com.rent.persistence.model.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import com.rent.persistence.model.OrderStatus;
-import java.time.LocalDate;
 
 /**
  * Created by Toni on 19-Jun-17.
