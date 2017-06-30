@@ -41,14 +41,14 @@ public class BikesRestController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveBike(BikeDto bikeDto) {
+    public void saveBike(@RequestBody BikeDto bikeDto) {
 
         Bike bike = bikeDtoMapper.mapToEntity(bikeDto);
         bikeService.save(bike);
     }
 
     @PutMapping
-    public void updateBike(BikeDto bikeDto) {
+    public void updateBike(@RequestBody BikeDto bikeDto) {
         Bike bike = bikeService.findById(bikeDto.getBikeId());
         bike.setMaker(bikeDto.getMaker());
         bike.setModel(bikeDto.getModel());
