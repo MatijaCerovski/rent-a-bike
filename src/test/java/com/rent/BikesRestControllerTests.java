@@ -1,5 +1,6 @@
 package com.rent;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rent.controller.rest.BikesRestController;
 import com.rent.dto.BikeDto;
 import com.rent.service.bike.BikeService;
@@ -33,6 +34,9 @@ public class BikesRestControllerTests {
     private MockMvc mockMvc;
 
     @Autowired
+    ObjectMapper objectMapper;
+
+    @Autowired
     private BikesRestController bikesRestController;
 
     @Mock
@@ -51,10 +55,11 @@ public class BikesRestControllerTests {
         bikeDto.setModel("bike");
         bikeDto.setPrice(BigDecimal.valueOf(50.00));
 
-        String json = "{ \"maker\":\"bike\", \"model\":\"bike\", \"price\":50 }";
+//        String json = "{ \"maker\":\"bike\", \"model\":\"bike\", \"price\":50 }";
 
-        mockMvc.perform(post("/api/bikes", json)
-                .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(post("/api/bikes")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(bikeDto)))
                 .andExpect(status().isCreated());
     }
 }
