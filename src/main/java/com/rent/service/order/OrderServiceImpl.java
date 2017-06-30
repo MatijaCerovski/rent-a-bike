@@ -20,25 +20,16 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order findById(Integer orderId) {
-        if (orderId == null) {
-            return null;
-        }
         return orderRepository.findOne(orderId);
     }
 
     @Override
     public Order save(Order order) {
-        if (order == null) {
-            return null;
-        }
         return orderRepository.save(order);
     }
 
     @Override
     public void delete(Order order) {
-        if (order == null) {
-
-        }
         orderRepository.delete(order);
     }
 
