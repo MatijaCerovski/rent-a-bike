@@ -62,4 +62,24 @@ public class BikesRestControllerTests {
                 .content(objectMapper.writeValueAsString(bikeDto)))
                 .andExpect(status().isCreated());
     }
+
+    @Test
+    public void testDeleteBike() throws Exception {
+        mockMvc.perform(delete("/api/bikes/{id}", 1))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void testUpdateBike() throws Exception {
+        BikeDto bikeDto = new BikeDto();
+        bikeDto.setBikeId(1);
+        bikeDto.setMaker("bike");
+        bikeDto.setModel("bike");
+        bikeDto.setPrice(BigDecimal.valueOf(50.00));
+
+        mockMvc.perform(put("api/bikes")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(bikeDto)))
+                .andExpect(status().isOk());
+    }
 }
